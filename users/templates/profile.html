@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<style >
+    h3 {
+       color: white;     
+    }
+</style>
+    <div class="container">
+       
+    <div style="  padding: 0% 0% 0% 10%;"><br>
+    <h5 style="color: white; ">Name:</h5>
+    <h2>{{ f_name }} {{ l_name }} </h2><br>
+    <h5 style="color: white;">Email:</h5>
+    <h2>{{ email }}</h2><br>
+    <h5 style="color: white;">Contact:</h5>
+    <h2>{{ phone }}</h2><br>
+    <h5 style="color: white;">Year:</h5>
+    <h2>{{ year }}</h2><br>
+    <h5 style="color: white;">Skills:</h5>
+    <h2>{{ skills }}</h2><br>
+    <a class="btn" style="color: white; background-color: #fd5e14;" id="body-link-row" href="{% url 'profile_update' id %}">Edit</a>
+    </div>
+   
+    </div>
+    
+    
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+{% block content %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+ 
+
+  </head>
+  <body>
+
+<style>
+  input {
+       outline: none;
+       border: none;
+   }
+   input[type=text]{
+    border: 1px solid #757575;
+       border-radius: 5px;
+       padding: 10px;
+       width: 90%;
+       
+   }
+   
+ 
+   textarea {
+       border: 1px solid #757575;
+       border-radius: 5px;
+       padding: 10px;
+       width: 90%;
+       height: 70px;
+   }
+
+   label {
+       padding-top: 10px !important;
+       display: block;
+   }
+
+   ::placeholder {
+       font-weight: 300;
+       opacity: 0.5;
+   }
+</style>
+<div class="container mt-5">
+<form method="POST" action="" >
+  
+  <div class="form-group">
+      <label>File Name</label><br>
+        {{form.title}}   
+          
+  </div>
+  <div class="form-group">
+    <label>File description</label><br>
+    
+        {{form.description}}  
+   
+  </div>
+  
+  {% csrf_token %}
+  <br>
+ 
+  <button type="submit" style=" width: 120px; font-size: 20px;" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+
+
+
+{% endblock %}
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

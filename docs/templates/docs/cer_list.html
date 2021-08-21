@@ -1,0 +1,279 @@
+{% extends 'base.html'%}
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+
+li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  .col-1 {
+    flex-basis: 20%;
+  }
+  .col-2 {
+    flex-basis: 22%;
+  }
+  .col-3 {
+    flex-basis: 22%;
+  }
+  .col-5 {
+    flex-basis: 36%;
+  }
+  
+@media all and (max-width: 767px) {
+    li {
+      display: block;
+    }
+    .col {
+      flex-basis: 100%;
+    }
+    .col {
+      display: flex;
+      padding: 10px 0;
+    }
+  }
+
+   
+.buttonDownload {
+	display: inline-block;
+	position: relative;
+	padding: 10px 25px;
+  
+	background-color: white;
+	color: black;
+  
+	font-family: sans-serif;
+	text-decoration: none;
+	font-size: 15px;
+	text-align: center;
+	text-indent: 15px;
+  font-weight: bolder;
+}
+
+.buttonDownload:hover {
+	background-color: #333;
+	color: white;
+}
+
+.buttonDownload:before, .buttonDownload:after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 15px;
+	top: 52%;
+}
+
+/* Download box shape  */
+.buttonDownload:before {
+	width: 10px;
+	height: 2px;
+	border-style: solid;
+	border-width: 0 2px 2px;
+}
+
+/* Download arrow shape */
+.buttonDownload:after {
+	width: 0;
+	height: 0;
+	margin-left: 3px;
+	margin-top: -7px;
+  
+	border-style: solid;
+	border-width: 4px 4px 0 4px;
+	border-color: transparent;
+	border-top-color: inherit;
+	
+	animation: downloadArrow 1s linear infinite;
+	animation-play-state: paused;
+}
+
+.buttonDownload:hover:before {
+	border-color: orange;
+}
+
+.buttonDownload:hover:after {
+	border-top-color: white;
+	animation-play-state: running;
+}
+
+/* keyframes for the download icon anim */
+@keyframes downloadArrow {
+	/* 0% and 0.001% keyframes used as a hackish way of having the button frozen on a nice looking frame by default */
+	0% {
+		margin-top: -7px;
+		opacity: 1;
+	}
+	
+	0.001% {
+		margin-top: -15px;
+		opacity: 0;
+	}
+	
+	50% {
+		opacity: 1;
+	}
+	
+	100% {
+		margin-top: 0;
+		opacity: 0;
+	}
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid white;
+  border-right: none;
+  padding: 5px;
+  height: 50px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: black;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+  width: 60px;
+  height: 51px;
+  border: 1px solid black;
+  background: black;
+  text-align: center;
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 40%;
+  position: relative;
+  top: 90px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+</style>
+
+<form method="GET">
+<div class="wrap">
+  <div class="search">
+     <input type="text" class="searchTerm" placeholder="Search" name="search_area" value="{{search_input}}">
+     <button type="submit" class="searchButton">
+       <i class="fa fa-search"></i>
+    </button>
+  </div>
+</div>
+<br> <br>
+<br><br>
+
+<div class="container">
+  {% for docs in documents %}
+  <ul>
+    <li class="table-row">
+      <div class="col col-1" style="font-weight: bold; font-size: 25px; font:small-caps; text-transform: uppercase;">{{docs.title}}</div>
+      <div class="col col-2" style="font-weight: bold; font-size: 20px; font:small-caps; text-transform: uppercase;" >
+        {{docs.issue_year}}
+      </div>
+
+      <div class="col col-3" style="font-weight: bold; font-size: 20px; font:small-caps; text-transform: uppercase;">
+        {{docs.activity}}
+      </div>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <div class="col col-5">
+        <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+        <a class="btn"  href="{% url 'cer_detail' docs.id %}">
+          <lord-icon
+            src="https://cdn.lordicon.com/tyounuzx.json"
+            trigger="loop"
+            colors="primary:#121331,secondary:#08a88a"
+            stroke="100"
+            style="width:40px;height:40px">
+          </lord-icon></a>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a class="btn"  href="{% url 'cer_update' docs.id %}">
+          
+            <lord-icon
+              src="https://cdn.lordicon.com/wloilxuq.json"
+              trigger="loop"
+              colors="primary:#121331,secondary:#08a88a"
+              stroke="100"
+              style="width:40px;height:40px">
+            </lord-icon>
+        </a>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a class="btn"  href="{% url 'cer_delete' docs.id %}">
+         
+            <lord-icon
+              src="https://cdn.lordicon.com/gsqxdxog.json"
+              trigger="loop"
+              colors="primary:#121331,secondary:#08a88a"
+              stroke="100"
+              style="width:40px;height:40px">
+            </lord-icon>
+        </a>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a class="btn" download href="{{docs.files.url}}">
+          <lord-icon 
+              src="https://maxst.icons8.com/vue-static/landings/animated-icons/icons/installing-updates/installing-updates.json"
+              trigger="loop"  
+              style="width:30px;height:30px">
+            </lord-icon>
+        </a>
+      </div>
+    </li>
+  </ul>
+  {% empty %}
+  <h3>no docs</h3>
+  {% endfor %}
+</div>
+<div style="margin: auto; width: 14%;">
+  <a class="btn buttonDownload" style="display: relative;"  href="{% url 'cer_create' %}">ADD NEW</a>
+</div>
+
+{% endblock %}
+
+
+
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
